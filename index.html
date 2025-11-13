@@ -1,77 +1,51 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Custom DuckDuckGo Site Search</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #fafef5;
-      margin: 0;
-      padding: 40px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-    h1 {
-      color: #de5833;
-      margin-bottom: 20px;
-    }
-    form {
-      display: flex;
-      gap: 10px;
-      align-items: center;
-    }
-    input[type="search"] {
-      padding: 10px;
-      font-size: 16px;
-      width: 300px;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-    }
-    input[type="submit"] {
-      padding: 10px 20px;
-      font-size: 16px;
-      background-color: #de5833;
-      color: white;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-    }
-    input[type="submit"]:hover {
-      background-color: #c94c2e;
-    }
-  </style>
+<html xmlns="http://www.w3.org/1999/xhtml"><!--<![endif]--><head>
+  <link rel="canonical" href="https://duckduckgo.com/">
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=3.0, user-scalable=1">
+  <meta name="referrer" content="origin">
+  <title>DuckDuckGo</title>
+  <link title="DuckDuckGo (HTML)" type="application/opensearchdescription+xml" rel="search" href="//duckduckgo.com/opensearch_html_v2.xml">
+  <link rel="icon" href="//duckduckgo.com/favicon.ico" type="image/x-icon">
+  <link id="icon60" rel="apple-touch-icon" href="//duckduckgo.com/assets/icons/meta/DDG-iOS-icon_60x60.png?v=2">
+  <link id="icon76" rel="apple-touch-icon" sizes="76x76" href="//duckduckgo.com/assets/icons/meta/DDG-iOS-icon_76x76.png?v=2">
+  <link id="icon120" rel="apple-touch-icon" sizes="120x120" href="//duckduckgo.com/assets/icons/meta/DDG-iOS-icon_120x120.png?v=2">
+  <link id="icon152" rel="apple-touch-icon" sizes="152x152" href="//duckduckgo.com/assets/icons/meta/DDG-iOS-icon_152x152.png?v=2">
+  <link rel="image_src" href="//duckduckgo.com/assets/icons/meta/DDG-icon_256x256.png">
+  <link rel="stylesheet" media="handheld, all" href="//duckduckgo.com/dist/h.094067438196160ebd4c.css" type="text/css">
 </head>
-<body>
-  <h1>Search My Site with DuckDuckGo</h1>
-  <form
-    action="https://duckduckgo.com"
-    method="get"
-    target="_blank"
-    rel="noopener"
-    onsubmit="this.k7.value = getComputedStyle(document.documentElement).backgroundColor"
-  >
-    <!-- Search query -->
-    <input
-      type="search"
-      name="q"
-      aria-label="Search via DuckDuckGo"
-      placeholder="Search oliverjam.com"
-      required
-    />
 
-    <!-- DuckDuckGo customization parameters -->
-    <input type="hidden" name="sites" value="oliverjam.com" />
-    <input type="hidden" name="ko" value="-2" /> <!-- Remove header -->
-    <input type="hidden" name="k1" value="-1" /> <!-- Remove ads -->
-    <input type="hidden" name="kz" value="-1" /> <!-- Remove related searches -->
-    <input type="hidden" name="km" value="m" />  <!-- Center results -->
-    <input type="hidden" name="k7" value="#fafef5" /> <!-- Background color -->
+<body class="body--home body--html">
+  <div class="header-wrap--home"></div>
+  <div id="content_wrapper_homepage" class="content-wrap--home">
+  <div id="content_homepage" class="content--home">
+    <div class="logo-wrap--home">
+    <a title="About DuckDuckGo" class="logo_homepage" href="//duckduckgo.com/about.html">About DuckDuckGo</a>
+    </div>
+    <div class="search-wrap--home">
+        <form name="x" id="search_form_homepage" class="search" action="/html/" method="post">
 
-    <!-- Submit button -->
-    <input type="submit" value="Search" />
-  </form>
-</body>
-</html>
+          <input name="q" autocomplete="off" id="search_form_input_homepage" class="search__input" type="text" autofocus="">
+
+          <input name="b" id="search_button_homepage" class="search__button search__button--html" value="" title="Search" alt="Search" type="submit">
+
+
+
+
+
+
+        </form>
+    </div>
+
+    <!--[if IE 6]>
+        <p class="text-center">This browser is not supported. Please visit <a href="/lite">/lite</a>.</p>
+    <![endif]-->
+
+	<div id="html-only-notice">
+<!--          This is the HTML version. Get the JS version <a href="https://duckduckgo.com/">here</a>. //-->
+	</div>
+
+  </div> <!-- id="content_homepage" -->
+  </div> <!-- id="content_wrapper_homepage" -->
+
+
+</body></html>
