@@ -3,48 +3,32 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>DuckDuckGo Search</title>
+  <title>DuckDuckGo Browser</title>
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #f2f2f2;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
+    html, body {
       margin: 0;
+      padding: 0;
+      height: 100%;
+      width: 100%;
+      font-family: Arial, sans-serif;
+      background-color: #f2f2f2;
     }
-    h1 {
-      color: #de5833;
-    }
-    form {
-      display: flex;
-      gap: 10px;
-    }
-    input[type="text"] {
-      padding: 10px;
-      font-size: 16px;
-      width: 300px;
-    }
-    input[type="submit"] {
-      padding: 10px 20px;
-      font-size: 16px;
+    header {
       background-color: #de5833;
       color: white;
-      border: none;
-      cursor: pointer;
+      padding: 10px 20px;
+      text-align: center;
+      font-size: 24px;
     }
-    input[type="submit"]:hover {
-      background-color: #c94c2e;
+    iframe {
+      width: 100%;
+      height: calc(100% - 60px);
+      border: none;
     }
   </style>
 </head>
 <body>
-  <h1>DuckDuckGo Search</h1>
-  <form method="get" action="https://duckduckgo.com/">
-    <input type="text" name="q" placeholder="Search the web..." required />
-    <input type="submit" value="Search" />
-  </form>
+  <header>DuckDuckGo Browser</header>
+  <iframe src="https://duckduckgo.com"></iframe>
 </body>
 </html>
