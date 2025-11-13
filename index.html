@@ -3,24 +3,27 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Instant Answer</title>
+  <title>Custom DuckDuckGo Site Search</title>
   <style>
     body {
       font-family: Arial, sans-serif;
-      background: #f2f2f2;
+      background-color: #fafef5;
       margin: 0;
-      padding: 20px;
+      padding: 40px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
     h1 {
       color: #de5833;
-      text-align: center;
+      margin-bottom: 20px;
     }
     form {
       display: flex;
-      justify-content: center;
-      margin-bottom: 20px;
+      gap: 10px;
+      align-items: center;
     }
-    input[type="text"] {
+    input[type="search"] {
       padding: 10px;
       font-size: 16px;
       width: 300px;
@@ -34,59 +37,41 @@
       color: white;
       border: none;
       border-radius: 4px;
-      margin-left: 10px;
       cursor: pointer;
     }
     input[type="submit"]:hover {
       background-color: #c94c2e;
     }
-    #results {
-      max-width: 600px;
-      margin: 0 auto;
-      background: white;
-      padding: 20px;
-      border-radius: 8px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    }
-    #results h2 {
-      margin-top: 0;
-    }
   </style>
 </head>
 <body>
-  <h1>DuckDuckGo Instant Search</h1>
-  <form onsubmit="search(event)">
-    <input type="text" id="query" placeholder="Search the web..." required />
+  <h1>Search My Site with DuckDuckGo</h1>
+  <form
+    action="https://duckduckgo.com"
+    method="get"
+    target="_blank"
+    rel="noopener"
+    onsubmit="this.k7.value = getComputedStyle(document.documentElement).backgroundColor"
+  >
+    <!-- Search query -->
+    <input
+      type="search"
+      name="q"
+      aria-label="Search via DuckDuckGo"
+      placeholder="Search oliverjam.com"
+      required
+    />
+
+    <!-- DuckDuckGo customization parameters -->
+    <input type="hidden" name="sites" value="oliverjam.com" />
+    <input type="hidden" name="ko" value="-2" /> <!-- Remove header -->
+    <input type="hidden" name="k1" value="-1" /> <!-- Remove ads -->
+    <input type="hidden" name="kz" value="-1" /> <!-- Remove related searches -->
+    <input type="hidden" name="km" value="m" />  <!-- Center results -->
+    <input type="hidden" name="k7" value="#fafef5" /> <!-- Background color -->
+
+    <!-- Submit button -->
     <input type="submit" value="Search" />
   </form>
-  <div id="results"></div>
-
-  <script>
-    async function search(event) {
-      event.preventDefault();
-      const query = document.getElementById("query").value;
-      const url = `https://api.duckduckgo.com/?q=${encodeURIComponent(query)}&format=json&no_redirect=1&no_html=1`;
-
-      const res = await fetch(url);
-      const data = await res.json();
-
-      const resultsDiv = document.getElementById("results");
-      resultsDiv.innerHTML = "";
-
-      if (data.AbstractText) {
-        resultsDiv.innerHTML += `<h2>${data.Heading}</h2><p>${data.AbstractText}</p>`;
-      } else if (data.RelatedTopics && data.RelatedTopics.length > 0) {
-        resultsDiv.innerHTML += `<h2>Related Topics</h2><ul>`;
-        data.RelatedTopics.slice(0, 5).forEach(topic => {
-          if (topic.Text && topic.FirstURL) {
-            resultsDiv.innerHTML += `<li><a href="${topic.FirstURL}" target="_blank">${topic.Text}</a></li>`;
-          }
-        });
-        resultsDiv.innerHTML += `</ul>`;
-      } else {
-        resultsDiv.innerHTML = "<p>No results found.</p>";
-      }
-    }
-  </script>
 </body>
 </html>
