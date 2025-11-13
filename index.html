@@ -3,48 +3,48 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>DuckDuckGo Search</title>
-  <link rel="icon" href="https://duckduckgo.com/favicon.ico" type="image/x-icon" />
-  <link rel="stylesheet" href="https://duckduckgo.com/dist/h.094067438196160ebd4c.css" />
+  <title>Search My Site</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f2f2f2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+    h1 {
+      color: #de5833;
+    }
+    form {
+      display: flex;
+      gap: 10px;
+    }
+    input[type="text"] {
+      padding: 10px;
+      font-size: 16px;
+      width: 300px;
+    }
+    input[type="submit"] {
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #de5833;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    input[type="submit"]:hover {
+      background-color: #c94c2e;
+    }
+  </style>
 </head>
-<body class="body--home body--html">
-  <div class="header-wrap--home"></div>
-  <div id="content_wrapper_homepage" class="content-wrap--home">
-    <div id="content_homepage" class="content--home">
-      <div class="logo-wrap--home">
-        <a title="About DuckDuckGo" class="logo_homepage" href="https://duckduckgo.com/about.html">About DuckDuckGo</a>
-      </div>
-      <div class="search-wrap--home">
-        <form
-          name="x"
-          id="search_form_homepage"
-          class="search"
-          action="https://duckduckgo.com/"
-          method="get"
-          target="_blank"
-          rel="noopener"
-        >
-          <input
-            name="q"
-            autocomplete="off"
-            id="search_form_input_homepage"
-            class="search__input"
-            type="text"
-            placeholder="Search DuckDuckGo"
-            required
-          />
-          <input
-            id="search_button_homepage"
-            class="search__button search__button--html"
-            type="submit"
-            value="Search"
-          />
-        </form>
-      </div>
-      <div id="html-only-notice">
-        This is a custom DuckDuckGo search form. Results open in a new tab.
-      </div>
-    </div>
-  </div>
+<body>
+  <h1>Search My Site</h1>
+  <form action="results.html" method="get">
+    <input type="text" name="q" placeholder="Search..." required />
+    <input type="submit" value="Search" />
+  </form>
 </body>
 </html>
