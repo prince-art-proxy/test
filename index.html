@@ -3,25 +3,22 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>DuckDuckGo Search</title>
+  <title>DuckDuckGo Instant Search</title>
   <style>
     body {
       font-family: Arial, sans-serif;
       background: #f2f2f2;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
       margin: 0;
+      padding: 20px;
     }
     h1 {
       color: #de5833;
-      margin-bottom: 20px;
+      text-align: center;
     }
     form {
       display: flex;
-      gap: 10px;
+      justify-content: center;
+      margin-bottom: 20px;
     }
     input[type="text"] {
       padding: 10px;
@@ -37,18 +34,59 @@
       color: white;
       border: none;
       border-radius: 4px;
+      margin-left: 10px;
       cursor: pointer;
     }
     input[type="submit"]:hover {
       background-color: #c94c2e;
     }
+    #results {
+      max-width: 600px;
+      margin: 0 auto;
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    #results h2 {
+      margin-top: 0;
+    }
   </style>
 </head>
 <body>
-  <h1>DuckDuckGo Search</h1>
-  <form method="get" action="https://duckduckgo.com/">
-    <input type="text" name="q" placeholder="Search the web..." required />
+  <h1>DuckDuckGo Instant Search</h1>
+  <form onsubmit="search(event)">
+    <input type="text" id="query" placeholder="Search the web..." required />
     <input type="submit" value="Search" />
   </form>
+  <div id="results"></div>
+
+  <script>
+    async function search(event) {
+      event.preventDefault();
+      const query = document.getElementById("query").value;
+      const url = `https://api.duckduckgo.com/?q=${encodeURIComponent(query)}&format=json&no_redirect=1&no_html=1`;
+
+      const res = await fetch(url);
+      const data = await res.json();
+
+      const resultsDiv = document.getElementById("results");
+      resultsDiv.innerHTML = "";
+
+      if (data.AbstractText) {
+        resultsDiv.innerHTML += `<h2>${data.Heading}</h2><p>${data.AbstractText}</p>`;
+      } else if (data.RelatedTopics && data.RelatedTopics.length > 0) {
+        resultsDiv.innerHTML += `<h2>Related Topics</h2><ul>`;
+        data.RelatedTopics.slice(0, 5).forEach(topic => {
+          if (topic.Text && topic.FirstURL) {
+            resultsDiv.innerHTML += `<li><a href="${topic.FirstURL}" target="_blank">${topic.Text}</a></li>`;
+          }
+        });
+        resultsDiv.innerHTML += `</ul>`;
+      } else {
+        resultsDiv.innerHTML = "<p>No results found.</p>";
+      }
+    }
+  </script>
 </body>
 </html>
