@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>My Custom Browser</title>
+  <title>Scrambled Browser</title>
   <style>
     body {
       margin: 0;
@@ -17,7 +17,7 @@
       padding: 15px;
       font-size: 24px;
     }
-    .search-bar {
+    .input-bar {
       margin: 20px;
     }
     input[type="text"] {
@@ -36,30 +36,38 @@
       border-radius: 4px;
       cursor: pointer;
     }
-    .icons {
-      margin: 20px;
-    }
-    .icons img {
-      width: 32px;
-      margin: 0 10px;
-      cursor: pointer;
+    iframe {
+      width: 100%;
+      height: 80vh;
+      border: none;
     }
   </style>
 </head>
 <body>
-  <header>My Custom Browser</header>
+  <header>Scrambled Browser</header>
 
-  <div class="search-bar">
-    <form action="https://duckduckgo.com" method="get" target="_blank">
-      <input type="text" name="q" placeholder="Search..." required />
-      <input type="submit" value="Search" />
+  <div class="input-bar">
+    <form onsubmit="decodeAndLoad(event)">
+      <input type="text" id="scrambled" placeholder="Enter scrambled URL..." required />
+      <input type="submit" value="Go" />
     </form>
   </div>
 
-  <div class="icons">
-    <img src="https://nsd160.org/stuff/icons/back.svg" alt="Back" onclick="history.back()" />
-    <img src="https://nsd160.org/stuff/icons/forward.svg" alt="Forward" onclick="history.forward()" />
-    <img src="https://nsd160.org/stuff/icons/reload.svg" alt="Reload" onclick="location.reload()" />
-  </div>
+  <iframe id="browserFrame" src=""></iframe>
+
+  <script>
+    function decodeAndLoad(event) {
+      event.preventDefault();
+      const input = document.getElementById("scrambled").value;
+
+      // Example: decode using Base64 (you can change this to ROT13 or custom logic)
+      try {
+        const decoded = atob(input);
+        document.getElementById("browserFrame").src = decoded;
+      } catch (e) {
+        alert("Invalid scrambled URL. Make sure it's Base64 encoded.");
+      }
+    }
+  </script>
 </body>
 </html>
